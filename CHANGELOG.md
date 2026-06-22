@@ -6,6 +6,15 @@ All notable changes will be documented here.
 
 - No unreleased changes.
 
+## 0.3.0 - 2026-06-22
+
+- Added Local Search & Source Memory for generated household admin outputs.
+- Added `memory_index.md` to summarize searchable local memory.
+- Added a local SQLite `search_index.sqlite` under ignored `output/`.
+- Added search CLI filters for keyword, item type, category, owner, status, privacy tier, and date range.
+- Added simple UTF-8 substring search across English, Chinese, and Norwegian synthetic content.
+- Preserved source traceability, dry-run behavior, and no-source-file-change guarantees.
+
 ## 0.2.0 - 2026-06-22
 
 - Added the household admin value loop for structured synthetic P0 notes.

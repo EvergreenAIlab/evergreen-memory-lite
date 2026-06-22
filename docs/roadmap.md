@@ -10,9 +10,9 @@ Document the privacy tiers, ship synthetic P0 examples, and demonstrate dry-run-
 
 v0.2.0 shipped the household admin value loop, which turns structured synthetic notes into a readable local brief, action list, timeline, source index, and risk flags while preserving dry-run and no-source-change guarantees.
 
-## v0.3.0 — optional local search
+## v0.3.0 — shipped: local search and source memory
 
-Explore simple local search over synthetic or deliberately demo-safe data. Keep it optional, inspectable, and cloud-free.
+v0.3.0 shipped an inspectable SQLite index, readable memory overview, and source-traceable keyword and metadata filters over synthetic demo data. It remains cloud-free and uses no AI, RAG, embeddings, or vector database.
 
 ## Later
 

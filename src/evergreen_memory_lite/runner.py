@@ -13,6 +13,7 @@ from .cards import Card, build_card, render_card
 from .household import HOUSEHOLD_OUTPUT_NAMES, parse_household_note, render_household_outputs
 from .privacy import classify_text
 from .registry import initialize_registry, register_card
+from .search import MEMORY_INDEX_NAME, SEARCH_INDEX_NAME, build_search_records, render_memory_index, write_search_index
 
 
 @dataclass(frozen=True)
@@ -46,10 +47,15 @@ def run(
 
     household_documents: dict[str, str] = {}
     household_paths: tuple[Path, ...] = ()
+    search_records = []
+    search_index_path: Path | None = None
     if household_admin:
         notes = [parse_household_note(source, text) for source, text in source_texts]
         household_documents = render_household_outputs(notes, cards, output_dir)
-        household_paths = tuple(output_dir / name for name in HOUSEHOLD_OUTPUT_NAMES)
+        search_records = build_search_records(notes, cards, output_dir)
+        household_documents[MEMORY_INDEX_NAME] = render_memory_index(search_records)
+        search_index_path = output_dir / SEARCH_INDEX_NAME
+        household_paths = tuple(output_dir / name for name in (*HOUSEHOLD_OUTPUT_NAMES, MEMORY_INDEX_NAME)) + (search_index_path,)
 
     if not write:
         return RunResult(dry_run=True, cards=tuple(cards), household_outputs=household_paths)
@@ -81,6 +87,8 @@ def run(
     for name, content in household_documents.items():
         with (output_dir / name).open("x", encoding="utf-8", newline="\n") as stream:
             stream.write(content)
+    if search_index_path is not None:
+        write_search_index(search_index_path, search_records)
 
     audit_path = local_state_dir / "audit.jsonl"
     event = {
@@ -89,7 +97,7 @@ def run(
         "count": len(cards),
     }
     if household_admin:
-        event["outputs"] = list(household_documents)
+        event["outputs"] = [*household_documents, SEARCH_INDEX_NAME]
     with audit_path.open("a", encoding="utf-8", newline="\n") as stream:
         stream.write(json.dumps(event, sort_keys=True) + "\n")
 
@@ -104,7 +112,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--household-admin",
         action="store_true",
-        help="Plan or create the five household admin Markdown outputs",
+        help="Plan or create household admin Markdown outputs and local search memory",
     )
     return parser
 

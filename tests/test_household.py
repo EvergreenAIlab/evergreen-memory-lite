@@ -5,6 +5,7 @@ import pytest
 
 from evergreen_memory_lite.household import HOUSEHOLD_OUTPUT_NAMES, parse_household_note
 from evergreen_memory_lite.runner import main, run
+from evergreen_memory_lite.search import MEMORY_INDEX_NAME, SEARCH_INDEX_NAME
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,7 +54,11 @@ def test_household_admin_dry_run_writes_nothing(tmp_path: Path) -> None:
     result = run(inbox, output, household_admin=True)
 
     assert result.dry_run is True
-    assert {path.name for path in result.household_outputs} == set(HOUSEHOLD_OUTPUT_NAMES)
+    assert {path.name for path in result.household_outputs} == {
+        *HOUSEHOLD_OUTPUT_NAMES,
+        MEMORY_INDEX_NAME,
+        SEARCH_INDEX_NAME,
+    }
     assert not output.exists()
     assert file_hashes(inbox) == before
 
@@ -67,10 +72,11 @@ def test_household_admin_cli_creates_readable_outputs_without_source_changes(tmp
 
     assert main(["--input", str(inbox), "--output", str(output), "--household-admin", "--write"]) == 0
 
-    assert {path.name for path in output.glob("*.md")} == set(HOUSEHOLD_OUTPUT_NAMES)
+    assert {path.name for path in output.glob("*.md")} == {*HOUSEHOLD_OUTPUT_NAMES, MEMORY_INDEX_NAME}
     assert (output / "cards" / "note.card.md").is_file()
     assert (output / "registry.sqlite").is_file()
     assert (output / "audit.jsonl").is_file()
+    assert (output / SEARCH_INDEX_NAME).is_file()
     assert file_hashes(inbox) == before
     assert all(path.is_relative_to(output) for path in output.rglob("*") if path.is_file())
 
@@ -82,6 +88,7 @@ def test_household_admin_cli_creates_readable_outputs_without_source_changes(tmp
     assert "2026-07-03" in (output / "timeline.md").read_text(encoding="utf-8")
     assert "cards/note.card.md" in (output / "source_index.md").read_text(encoding="utf-8")
     assert "Source files changed: **0**" in (output / "family_brief.md").read_text(encoding="utf-8")
+    assert "# Local Memory Index" in (output / MEMORY_INDEX_NAME).read_text(encoding="utf-8")
 
 
 def test_non_p0_note_is_flagged_as_unsupported(tmp_path: Path) -> None:
