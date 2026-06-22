@@ -68,11 +68,16 @@ def test_all_public_text_contains_no_private_identifiers_or_secret_values() -> N
         assert all(prefix.casefold() not in text.casefold() for prefix in token_prefixes), path
 
 
-def test_data_directory_contains_only_synthetic_markdown() -> None:
-    data_files = [path for path in (ROOT / "data").rglob("*") if path.is_file()]
-    assert data_files
-    assert all(path.parent == ROOT / "data" / "synthetic" for path in data_files)
-    assert all(path.suffix == ".md" for path in data_files)
+def test_data_directories_contain_only_expected_synthetic_fixtures() -> None:
+    synthetic_files = [path for path in (ROOT / "data" / "synthetic").rglob("*") if path.is_file()]
+    assert synthetic_files
+    assert all(path.parent == ROOT / "data" / "synthetic" for path in synthetic_files)
+    assert all(path.suffix == ".md" for path in synthetic_files)
+
+    inbox_files = [path for path in (ROOT / "data" / "synthetic_inbox").rglob("*") if path.is_file()]
+    assert inbox_files
+    assert all(path.parent == ROOT / "data" / "synthetic_inbox" for path in inbox_files)
+    assert all(path.suffix.lower() in {".txt", ".md", ".docx", ".pdf", ".doc", ".png"} for path in inbox_files)
 
 
 def test_forbidden_private_paths_are_absent() -> None:

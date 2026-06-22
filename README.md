@@ -97,6 +97,37 @@ The household admin command now also creates `memory_index.md`, a readable overv
 
 Results show their source file, generated output, relevant date, and privacy tier. Search preserves English, Chinese, and Norwegian UTF-8 text without translation or fuzzy matching. See [docs/search.md](docs/search.md) for all filters and limitations.
 
+## Document intake and local launcher (v0.4.0)
+
+v0.4.0 adds a local document intake path and a small Windows launcher. Put `.txt`, `.md`, `.docx`, or digital `.pdf` files into `inbox/`, then run the launcher or the new batch file to generate a static dashboard and the existing household reports.
+
+```powershell
+.\.venv\Scripts\python.exe -m evergreen_memory_lite.runner `
+  --input data\synthetic_inbox `
+  --output output\latest `
+  --document-intake `
+  --household-admin `
+  --write
+```
+
+Supported inputs in v0.4.0:
+
+- `.txt`
+- `.md`
+- `.docx`
+- digital `.pdf` with selectable text
+
+Unsupported inputs in v0.4.0:
+
+- old `.doc`
+- scanned PDFs
+- images
+- OCR
+- encrypted PDFs
+- cloud folders, email, bots, or background watchers
+
+The new outputs are `dashboard.html`, `extraction_report.md`, `skipped_files.md`, `extracted/*.extracted.md`, `memory_index.md`, and `search_index.sqlite`. The launcher provides Add Files, Paste Quick Note, Run Inbox, Search Memory, and Open Latest Dashboard. This remains local-only and does not add LLM, RAG, vector search, embeddings, cloud services, or OCR.
+
 ## Project layout
 
 ```text

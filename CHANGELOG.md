@@ -6,6 +6,16 @@ All notable changes will be documented here.
 
 - No unreleased changes.
 
+## 0.4.0 - 2026-06-22
+
+- Added document intake for `.txt`, `.md`, `.docx`, and digital `.pdf` files.
+- Added local extraction reports and skipped-file reports.
+- Added extracted Markdown previews under `output/latest/extracted/`.
+- Added a static local `dashboard.html`.
+- Added a simple Windows local launcher.
+- Added root-level Windows batch entry points.
+- Preserved local-only, no-AI, no-cloud, no-source-mutation behavior.
+
 ## 0.3.0 - 2026-06-22
 
 - Added Local Search & Source Memory for generated household admin outputs.

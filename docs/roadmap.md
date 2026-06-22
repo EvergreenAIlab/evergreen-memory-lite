@@ -14,6 +14,10 @@ v0.2.0 shipped the household admin value loop, which turns structured synthetic 
 
 v0.3.0 shipped an inspectable SQLite index, readable memory overview, and source-traceable keyword and metadata filters over synthetic demo data. It remains cloud-free and uses no AI, RAG, embeddings, or vector database.
 
+## v0.4.0 — shipped: document intake and local launcher
+
+v0.4.0 shipped local intake for `.txt`, `.md`, `.docx`, and digital `.pdf` files, plus a static dashboard and simple Windows launcher. It remains local-only and keeps OCR, .doc, and cloud integrations out of scope.
+
 ## Later
 
 Consider optional integrations only after privacy boundaries, threat modeling, and maintainer capacity mature. Workflows involving real sensitive data are out of scope for the current release and near-term roadmap.

@@ -1,0 +1,21 @@
+---
+privacy_tier: P0
+synthetic: true
+category: household task
+title: Synthetic text note
+date: 2026-06-22
+due_date: 2026-07-05
+owner: Alex Example
+status: planned
+---
+
+Plain text sample for local document intake.
+
+Actions:
+- Confirm the synthetic text note was extracted
+
+Events:
+- 2026-07-05: Review the synthetic text note
+
+Risks:
+- Keep the note fictional
