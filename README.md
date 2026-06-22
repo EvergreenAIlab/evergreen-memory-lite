@@ -7,7 +7,7 @@ Evergreen Memory Lite is a small, Windows-first starter kit for exploring privac
 
 The project uses only synthetic P0 examples. It has no cloud dependency, does not call an AI service, and never deletes or changes source files.
 
-**Status:** early v0.1.0 release candidate. The project is an educational demo, not a production-ready system for real sensitive data.
+**Status:** v0.1.0 initial public release. The project is an educational demo, not a production-ready system for real sensitive data.
 
 ## Why Windows-first
 
