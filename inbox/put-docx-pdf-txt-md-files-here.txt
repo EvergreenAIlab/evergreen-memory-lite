@@ -1,0 +1,16 @@
+Put local demo files here.
+
+Supported in v0.4:
+- .txt
+- .md
+- .docx
+- digital .pdf with selectable text
+
+Unsupported in v0.4:
+- old .doc
+- scanned PDF
+- images
+- OCR
+- encrypted PDFs
+
+Do not put real sensitive files here. v0.4 is a local demo workflow.
