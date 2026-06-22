@@ -1,10 +1,21 @@
-# Example Receipt Note
+---
+privacy_tier: P0
+synthetic: true
+category: husholdningsarkiv
+title: Arkiver en eksempelkvittering
+date: 2026-06-20
+due_date: 2026-06-30
+owner: Nora Eksempel
+status: planlagt
+---
 
-Privacy: P0
-Synthetic: true
+Den oppdiktede butikken Eksempelbutikk Null utstedte en eksempelkvittering på 12,34 demokreditter.
 
-Fictional merchant: Acorn Corner Supplies
-Date: 2035-02-30
-Item: Reusable label cards
-Amount: 12.34 Demo Credits
-Reference: EXAMPLE-0001
+Oppgaver:
+- Arkiver eksempelkvitteringen sammen med husholdningens demofiler
+
+Hendelser:
+- 2026-06-30: Kontroller arkiveringen av eksempelkvitteringen
+
+Risiko:
+- Butikken, beløpet og referansen er oppdiktet

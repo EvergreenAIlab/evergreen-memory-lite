@@ -4,7 +4,7 @@ All notable changes will be documented here.
 
 ## Unreleased
 
-- No unreleased changes.
+- Household admin value loop for structured synthetic P0 notes, with a local brief, action list, timeline, source index, and risk flags.
 
 ## 0.1.0 - 2026-06-22
 

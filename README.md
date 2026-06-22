@@ -53,11 +53,33 @@ To run the synthetic write demonstration explicitly:
 
 Generated cards, the registry, and the audit log stay under the ignored `output\` directory.
 
+## Household admin value loop (v0.2 preview)
+
+The household admin workflow turns a few structured synthetic notes into useful local outputs for a family or small office. It creates a brief, action list, timeline, source index, and risk flags alongside the generated cards. UTF-8 note content may be English, Chinese, Norwegian, or mixed-language.
+
+```powershell
+.\.venv\Scripts\python.exe -m evergreen_memory_lite.runner `
+  --input data\synthetic `
+  --output output\household_admin `
+  --household-admin `
+  --write
+```
+
+Open these files after the command finishes:
+
+- `family_brief.md` — what matters, upcoming items, and a risk summary.
+- `action_list.md` — tasks, owners, due dates, status, and context.
+- `timeline.md` — dated events and related actions.
+- `source_index.md` — source-to-output traceability.
+- `risk_flags.md` — privacy, missing-field, and safety reminders.
+
+Omit `--write` to preview the plan without creating anything. Metadata keys remain English and the parser extracts only fixed structured headings; it does not translate or understand arbitrary language semantically. The workflow uses no cloud or API, and source files are never changed. Use only deliberately synthetic P0 notes; real sensitive data is not supported. See [docs/household_admin.md](docs/household_admin.md) for the input format and output guide.
+
 ## Project layout
 
 ```text
 data/synthetic/                 Synthetic P0 notes
-docs/                           Privacy, architecture, and release guidance
+docs/                           Privacy, workflow, architecture, and release guidance
 src/evergreen_memory_lite/      Local runner and supporting modules
 tests/                          Safety and behavior tests
 ```

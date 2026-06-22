@@ -1,6 +1,22 @@
-# Example Household Task
+---
+privacy_tier: P0
+synthetic: true
+category: 家务整理
+title: 给演示收纳箱贴标签
+date: 2026-06-22
+due_date: 2026-07-05
+owner: 示例用户
+status: 计划中
+---
 
-Privacy: P0
-Synthetic: true
+示例用户将为虚构的青松房间内两个演示收纳箱贴标签。
 
-Taylor Example will label the two demo storage boxes in the imaginary Cedar Room. The task is complete when each box has an invented category and a review date.
+待办：
+- 给每个演示收纳箱添加虚构类别标签
+- 给每个演示收纳箱添加虚构复查日期
+
+时间线：
+- 2026-07-05: 检查演示收纳箱标签
+
+风险：
+- 所有房间和收纳信息均为虚构内容

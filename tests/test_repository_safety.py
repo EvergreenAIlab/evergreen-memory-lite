@@ -27,8 +27,8 @@ def test_synthetic_samples_are_marked_and_contain_no_forbidden_identifiers() -> 
     ]
     for sample in samples:
         text = sample.read_text(encoding="utf-8")
-        assert "Privacy: P0" in text
-        assert "Synthetic: true" in text
+        assert "privacy_tier: P0" in text
+        assert "synthetic: true" in text
         assert all(term.casefold() not in text.casefold() for term in forbidden)
 
 
