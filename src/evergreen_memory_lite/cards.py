@@ -22,9 +22,25 @@ def build_card(source: Path, output_dir: Path, tier: PrivacyTier, text: str) -> 
     """Build card metadata from text without writing to disk."""
 
     digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
-    title = next((line.lstrip("# ").strip() for line in text.splitlines() if line.strip()), source.stem)
+    title = _title_from_text(text) or source.stem
     destination = output_dir / f"{source.stem}.card.md"
     return Card(source=source, destination=destination, tier=tier, digest=digest, title=title)
+
+
+def _title_from_text(text: str) -> str | None:
+    lines = text.splitlines()
+    if lines and lines[0].strip() == "---":
+        for line in lines[1:]:
+            if line.strip() == "---":
+                break
+            key, separator, value = line.partition(":")
+            if separator and key.strip() == "title" and value.strip():
+                return value.strip()
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("# "):
+            return stripped[2:].strip()
+    return next((line.lstrip("# ").strip() for line in lines if line.strip()), None)
 
 
 def render_card(card: Card) -> str:

@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -38,6 +39,9 @@ def test_explicit_write_creates_outputs_without_source_mutation(tmp_path: Path) 
     assert (output / "note.card.md").is_file()
     assert (output.parent / "registry.sqlite").is_file()
     assert (output.parent / "audit.jsonl").is_file()
+    audit = json.loads((output.parent / "audit.jsonl").read_text(encoding="utf-8"))
+    assert audit["event"] == "cards_created"
+    assert "outputs" not in audit
     assert snapshot(inbox) == before
 
 
