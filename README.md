@@ -75,6 +75,28 @@ Open these files after the command finishes:
 
 Omit `--write` to preview the plan without creating anything. Metadata keys remain English and the parser extracts only fixed structured headings; it does not translate or understand arbitrary language semantically. The workflow uses no cloud or API, and source files are never changed. Use only deliberately synthetic P0 notes; real sensitive data is not supported. See [docs/household_admin.md](docs/household_admin.md) for the input format and output guide.
 
+## Local search and source memory (v0.3.0)
+
+The household admin command now also creates `memory_index.md`, a readable overview, and `search_index.sqlite`, a local source-traceable index. Search uses simple SQLite substring and metadata filters; there is no LLM, RAG, vector database, embedding, or cloud service.
+
+```powershell
+.\.venv\Scripts\python.exe -m evergreen_memory_lite.search `
+  --memory output\household_admin `
+  --query kvittering
+
+.\.venv\Scripts\python.exe -m evergreen_memory_lite.search `
+  --memory output\household_admin `
+  --item-type action `
+  --date-from 2026-07-01 `
+  --date-to 2026-07-31
+
+.\.venv\Scripts\python.exe -m evergreen_memory_lite.search `
+  --memory output\household_admin `
+  --category 家务整理
+```
+
+Results show their source file, generated output, relevant date, and privacy tier. Search preserves English, Chinese, and Norwegian UTF-8 text without translation or fuzzy matching. See [docs/search.md](docs/search.md) for all filters and limitations.
+
 ## Project layout
 
 ```text

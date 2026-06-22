@@ -259,17 +259,23 @@ def _risk_entries(notes: list[HouseholdNote]) -> list[str]:
     entries: list[str] = []
     for note in notes:
         source = f"`{note.source.name}`"
-        if note.privacy_tier is None:
-            entries.append(f"{source}: privacy tier is unknown; do not treat this note as safe input.")
-        elif note.privacy_tier is not PrivacyTier.P0:
-            entries.append(
-                f"{source}: {note.privacy_tier.name} is not supported as safe input; use synthetic P0 notes only."
-            )
-        if not note.synthetic:
-            entries.append(f"{source}: synthetic marker is not confirmed.")
-        entries.extend(f"{source}: {issue}" for issue in note.issues)
-        entries.extend(f"{source}: {risk}" for risk in note.risks)
+        entries.extend(f"{source}: {message}" for message in note_risk_messages(note))
     return entries
+
+
+def note_risk_messages(note: HouseholdNote) -> tuple[str, ...]:
+    """Return the same source-level risk messages used by reports and search."""
+
+    messages: list[str] = []
+    if note.privacy_tier is None:
+        messages.append("Privacy tier is unknown; do not treat this note as safe input.")
+    elif note.privacy_tier is not PrivacyTier.P0:
+        messages.append(f"{note.privacy_tier.name} is not supported as safe input; use synthetic P0 notes only.")
+    if not note.synthetic:
+        messages.append("Synthetic marker is not confirmed.")
+    messages.extend(note.issues)
+    messages.extend(note.risks)
+    return tuple(messages)
 
 
 def _render_family_brief(notes: list[HouseholdNote]) -> str:
