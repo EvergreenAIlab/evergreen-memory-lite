@@ -1,8 +1,13 @@
 # Evergreen Memory Lite
 
+[![CI](https://github.com/EvergreenAIlab/evergreen-memory-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/EvergreenAIlab/evergreen-memory-lite/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Evergreen Memory Lite is a small, Windows-first starter kit for exploring privacy-tiered local memory workflows. It is intended for families and small private offices that want an understandable, local-only demonstration before deciding how a real system should be designed.
 
 The project uses only synthetic P0 examples. It has no cloud dependency, does not call an AI service, and never deletes or changes source files.
+
+**Status:** early v0.1.0 release candidate. The project is an educational demo, not a production-ready system for real sensitive data.
 
 ## Why Windows-first
 
