@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest a small, local-first improvement.
+title: "[Feature]: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not include real personal data, credentials, secrets, private documents,
+        financial data, medical data, legal data, identity documents, or screenshots
+        containing private information. Use a synthetic P0 example if context is needed.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Explain the public, general problem without private context.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the smallest useful local-first solution.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Project boundaries
+      options:
+        - label: This request can be discussed and tested using synthetic P0 information only.
+          required: true

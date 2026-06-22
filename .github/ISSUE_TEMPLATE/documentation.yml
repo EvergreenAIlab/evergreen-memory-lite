@@ -1,0 +1,28 @@
+name: Documentation improvement
+description: Report unclear, missing, or incorrect public documentation.
+title: "[Docs]: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not include real personal data, credentials, secrets, private documents,
+        financial data, medical data, legal data, identity documents, or screenshots
+        containing private information. Use synthetic P0 wording only.
+  - type: input
+    id: location
+    attributes:
+      label: Documentation location
+      placeholder: README section or documentation path
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear or incorrect?
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
