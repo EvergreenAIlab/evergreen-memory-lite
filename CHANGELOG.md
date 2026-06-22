@@ -4,7 +4,16 @@ All notable changes will be documented here.
 
 ## Unreleased
 
-- Household admin value loop for structured synthetic P0 notes, with a local brief, action list, timeline, source index, and risk flags.
+- No unreleased changes.
+
+## 0.2.0 - 2026-06-22
+
+- Added the household admin value loop for structured synthetic P0 notes.
+- Added local Markdown outputs: family brief, action list, timeline, source index, and risk flags.
+- Added English, Chinese, and Norwegian synthetic samples with UTF-8 preservation.
+- Added fixed section heading aliases for actions, events, and risks.
+- Preserved dry-run-by-default behavior and no-source-file-change guarantees.
+- Added tests for household output generation, non-P0 flagging, source immutability, and multilingual content.
 
 ## 0.1.0 - 2026-06-22
 

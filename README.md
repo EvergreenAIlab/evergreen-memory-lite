@@ -53,7 +53,7 @@ To run the synthetic write demonstration explicitly:
 
 Generated cards, the registry, and the audit log stay under the ignored `output\` directory.
 
-## Household admin value loop (v0.2 preview)
+## Household admin value loop (v0.2.0)
 
 The household admin workflow turns a few structured synthetic notes into useful local outputs for a family or small office. It creates a brief, action list, timeline, source index, and risk flags alongside the generated cards. UTF-8 note content may be English, Chinese, Norwegian, or mixed-language.
 

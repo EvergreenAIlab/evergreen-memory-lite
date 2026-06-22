@@ -6,9 +6,9 @@ The roadmap is intentionally small. Dates and scope may change after public revi
 
 Document the privacy tiers, ship synthetic P0 examples, and demonstrate dry-run-first card generation with local metadata and tests.
 
-## v0.2.0 — household admin value loop
+## v0.2.0 — shipped: household admin value loop
 
-Turn structured synthetic household and small-office notes into a readable local brief, action list, timeline, source index, and risk flags. Keep dry-run and no-source-change guarantees while improving card and registry ergonomics.
+v0.2.0 shipped the household admin value loop, which turns structured synthetic notes into a readable local brief, action list, timeline, source index, and risk flags while preserving dry-run and no-source-change guarantees.
 
 ## v0.3.0 — optional local search
 
